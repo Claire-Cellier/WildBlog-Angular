@@ -1,0 +1,15 @@
+.navbar{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    gap: 1rem;
+}
+
+ul{
+    list-style-type: none;
+}
+
+.header-title{
+    text-transform: uppercase;
+    text-align: center;
+}
