@@ -1,17 +1,11 @@
-import { Component } from '@angular/core';
-import { Article } from '../../models/article.model';
-import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { Injectable } from '@angular/core';
+import { Article } from '../models/article.model';
 
-@Component({
-  selector: 'app-article-list-component',
-  imports: [CommonModule, RouterLink],
-  templateUrl: './article-list-component.component.html',
-  styleUrl: './article-list-component.component.scss'
+@Injectable({
+  providedIn: 'root'
 })
-export class ArticleListComponent {
-
-  articles: Article[] = [
+export class ArticlesService {
+  private readonly articles: Article[] = [
     {
       id: 1,
       title: 'Angular 16: Les nouveautés',
@@ -190,4 +184,25 @@ export class ArticleListComponent {
     }
   ];
 
+  constructor() { }
+
+  getAll(): Article[] {
+    return this.articles;
+  }
+
+  getPublished(): Article[] {
+    return this.articles.filter(article => article.isPublished);
+  }
+
+  getById(id: number): Article | undefined {
+    return this.articles.find(article => article.id === id);
+  }
+
+  toggleLike(id: number): void {
+    const article = this.getById(id);
+    if (article) {
+      article.isLiked = !article.isLiked;
+      article.likeCount += article.isLiked ? 1 : -1;
+    }
+  }
 }
