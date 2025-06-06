@@ -1,9 +1,27 @@
-<section class="Article">
-<h2>{{article.title}}</h2>
-<h4>{{article.categoryName}}</h4>
-<img [src]="article.image" [alt]="article.title"/>
-<p>{{article.content}}</p>
+<!-- <section class="Article">
+  <h2>{{ article.title }}</h2>
+  <h4>{{ article.categoryName }}</h4>
+  <img [src]="article.image" [alt]="article.title" />
+  <p>{{ article.content }}</p>
 
-<p>{{article.likeCount}} ❤️</p> 
-<h6>{{article.createdAt}}</h6>
+  <p>{{ article.likeCount }} ❤️</p>
+  <h6>{{ article.createdAt }}</h6>
+</section> -->
+
+<section class="Articles">
+  <ul>
+    @for (article of articles; track $index) {
+    <li>
+      <h2>{{ article.title }}</h2>
+      <h4>{{ article.categoryName }}</h4>
+      <img [src]="article.image" [alt]="article.title" />
+      <p>{{ article.content }}</p>
+
+      <p [ngClass]="{'popular-article': article.likeCount > 200 }">{{ article.likeCount }} ❤️</p>
+      <h6>{{ article.createdAt }}</h6>
+    </li>
+    } @empty {
+    <li>Aucun article publié pour le moment</li>
+    }
+  </ul>
 </section>
