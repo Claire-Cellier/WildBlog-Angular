@@ -14,9 +14,8 @@ ul{
     text-align: center;
 }
 
-.button-plaque {
-  background-color: #29465B; /* Bleu plaque */
-  border: 5px solid #3C6E5A; /* Vert mobilier urbain */
+li {
+  background-color: #F7146B; /* Rose Wild */
   border-radius: 12px;
   color: white;
   padding: 0.5rem 1.2rem;
@@ -28,7 +27,12 @@ ul{
   transition: transform 0.1s ease-in-out;
 }
 
-.button-plaque:hover {
+li:hover {
   transform: scale(1.05);
   cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+  color: white;
 }
