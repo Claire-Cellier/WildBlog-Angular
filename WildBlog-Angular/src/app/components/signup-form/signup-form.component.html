@@ -1,0 +1,65 @@
+<!-- Exemple reactive form -->
+<form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="username">Nom de l'utilisateur</label>
+    <input id="username" formControlName="username">
+
+    @if (signUpForm.get('username')?.invalid &&
+    signUpForm.get('username')?.touched) {
+    <div>
+      @if (signUpForm.get('username')?.errors?.['required']) {
+      <span>Le nom d'utilisateur est requis.</span>
+      } @if (signUpForm.get('username')?.errors?.['minlength']) {
+      <span>Le nom doit comporter au moins 3 caractères.</span>
+      }
+    </div>
+    }
+  </div>
+
+  <div>
+    <label for="email">Email</label>
+    <input id="email" formControlName="email">
+    @if (signUpForm.get('email')?.invalid &&
+    signUpForm.get('email')?.touched) {
+    <div>
+      @if (signUpForm.get('email')?.errors?.['required']) {
+      <span>L'email est requis.</span>
+      } @if (signUpForm.get('email')?.errors?.['email']) {
+      <span>L'email est invalide</span>
+      }
+    </div>
+    }
+  </div>
+
+  <div formGroupName="passwords">
+    <div>
+      <label for="password">Mot de passe</label>
+      <input type="password" id="password" formControlName="password">
+      @if (signUpForm.get('password')?.invalid &&
+      signUpForm.get('password')?.touched) {
+      <div>
+        @if (signUpForm.get('password')?.errors?.['required']) {
+        <span>Le mot de passe est requis.</span>
+        } @if (signUpForm.get('password')?.errors?.['securePassword']) {
+        <span
+          >Le mot de passe doit contenir au moins 12 caractères, avec une
+          majuscule, une minuscule, un chiffre, et un caractère spécial.</span
+        >
+        }
+      </div>
+      }
+    </div>
+    <div>
+      <label for="confirmPassword">Confirmer le mot de passe</label>
+      <input
+        type="confirmPassword"
+        id="confirmPassword"
+        formControlName="confirmPassword">
+        @if (signUpForm.get('password')?.errors?.['passwordMismatch'] && signUpForm.get('passwords')?.touched) {
+            <span>Les mots de passe ne correspondent pas.</span>
+        }
+    </div>
+  </div>
+
+  <button type="submit" [disabled]="signUpForm.invalid">S'inscrire</button>
+</form>

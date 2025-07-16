@@ -1,3 +1,5 @@
+<!-- Exemple template driven form -->
+
 <form #contactForm="ngForm" (ngSubmit)="contactForm.valid && onSubmit()">
   <div>Le formulaire est-il soumis ? {{ contactForm.submitted }}</div>
   <div>Le formulaire est-il valide ? {{ contactForm.valid }}</div>
